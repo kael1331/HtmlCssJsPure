@@ -60,7 +60,7 @@ Al iniciar la aplicación por primera vez, se crea automáticamente un SuperAdmi
 ## 📁 Estructura del Proyecto
 
 ```
-/spa-auth
+/html-css-js
 ├── index.html                      # Archivo HTML principal
 ├── /css
 │   └── main.css                    # Estilos con temas diferenciados
