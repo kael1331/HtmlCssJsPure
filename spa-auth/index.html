@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Autenticación SPA</title>
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <!-- Contenedor principal donde se renderizará toda la aplicación -->
+    <div id="app"></div>
+    
+    <!-- Librerías externas desde CDN -->
+    <!-- localForage: Wrapper para IndexedDB -->
+    <script src="https://cdn.jsdelivr.net/npm/localforage@1.10.0/dist/localforage.min.js"></script>
+    
+    <!-- bcryptjs: Librería para hashing de contraseñas -->
+    <script src="https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js"></script>
+    
+    <!-- Script para asegurar que las librerías estén en window -->
+    <script>
+        // Asegurar que localforage esté en window
+        if (typeof localforage !== 'undefined') {
+            window.localforage = localforage;
+            console.log('✅ localforage disponible en window');
+        }
+        
+        // Asegurar que bcrypt esté en window
+        // bcryptjs se puede adjuntar como dcodeIO.bcrypt o directamente como bcrypt
+        if (typeof bcrypt !== 'undefined') {
+            window.bcrypt = bcrypt;
+            console.log('✅ bcrypt disponible en window');
+        } else if (typeof dcodeIO !== 'undefined' && dcodeIO.bcrypt) {
+            window.bcrypt = dcodeIO.bcrypt;
+            console.log('✅ bcrypt (dcodeIO) disponible en window');
+        }
+    </script>
+    
+    <!-- Módulo principal de la aplicación (ES Module) -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>

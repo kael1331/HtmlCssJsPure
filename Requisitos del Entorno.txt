@@ -1,0 +1,201 @@
+para levantar el entorno se requiere tener instalado:
+- node.js
+- npm
+- git
+chrome 
+configurar el terminal bash ctrl p terminal default profile bash 
+ademas crear archivos para indicarle las directivas generales en cuanto a arquitectura
+patrones de diseño organizacion de carpetas desestructuracion de problemas en la minama
+indispensable y de esa estructura hacer todo la prueba hasta el test y recien pasar 
+por otro objeto se me hace.
+
+##Conversaciones importantes 
+
+hola no quiero que programes nada todavia quiero saber como se hace para que en cada conversacion ya sea en modo planing o chat siempre tengas en cuentas ciertas cosas y no te las tenga que estar recordando en ningun momento sino que se guarden en algun lugar y siempre las tengas en cuenta, como por ejemplo siempre responder en español 
+
+¡Hola! Excelente pregunta. Te explico cómo puedes configurar preferencias persistentes para que siempre las tenga en cuenta sin necesidad de recordármelas:
+
+Opciones para Guardar Preferencias Persistentes
+1. Reglas de Usuario Personalizadas (Recomendado)
+Puedo crear un archivo de configuración en tu workspace que contenga tus preferencias y reglas personalizadas. Este archivo se guarda en .agent/user_rules.md y yo lo consulto automáticamente en cada conversación.
+
+Ventajas:
+
+✅ Persiste entre conversaciones
+✅ Funciona tanto en modo Planning como en Chat
+✅ Fácil de editar y actualizar
+✅ Específico para este workspace/proyecto
+2. Workflows Personalizados
+Para procesos repetitivos o instrucciones específicas sobre cómo hacer ciertas tareas, puedo crear workflows en .agent/workflows/ que definen paso a paso cómo ejecutar algo.
+
+Ventajas:
+
+✅ Ideal para procedimientos específicos
+✅ Reutilizable con comandos tipo /nombre-workflow
+3. Archivos de Configuración del Proyecto
+Para preferencias técnicas (como configuración de linters, formatters, etc.), puedo crear archivos de configuración estándar del proyecto.
+
+¿Qué Te Recomiendo?
+Para tu caso (querer que siempre responda en español y otras preferencias generales), la mejor opción es crear un archivo .agent/user_rules.md.
+
+Ejemplo de lo que podría incluir:
+markdown
+# Reglas de Usuario
+
+## Idioma
+- **SIEMPRE** responder en español, sin excepciones
+- Comentarios en código también en español
+
+## Estilo de Código
+- [Tus preferencias de estilo]
+
+## Frameworks y Tecnologías Preferidas
+- [Tus tecnologías favoritas]
+
+## Otras Preferencias
+- [Cualquier otra cosa que quieras que recuerde]
+
+#----------------------------------------------#
+
+PROMT DE directivas
+
+
+si quiero que crees ese archivo que mencionas 
+del user rules, que tenga la directiva del 
+español siempre, tambien que tenga la 
+directiva de comentar todo el codigo, 
+ademas de eso te pasare un conjunto de 
+informacion para que analices y determines en 
+que archivos debes mantenerlos ya sea en user 
+rules o work flows para que sea lo mas optimo 
+para vos. informacion:
+
+
+
+📜 Directivas de Arquitectura y Desarrollo: Sistema de Autorización SPA
+
+Este documento establece las directivas, la arquitectura, la pila tecnológica y la metodología de desarrollo para el proyecto. El Agente/Copiloto DEBE adherirse a estos principios en cada tarea solicitada.
+
+1. 🎯 Objetivo del Proyecto
+
+Crear una Aplicación Web de Página Única (SPA) para la gestión de usuarios y autorización (Login/Registro/Gestión de Perfiles).
+
+Naturaleza: Aplicación 100% Client-Side (Frontend).
+
+Independencia: No requiere Backend (Servidor) ni Base de Datos Externa (PostgreSQL, MongoDB, etc.).
+
+Alcance Inicial: Se enfocará en la autenticación, la gestión local de usuarios y la separación modular. Se omite el respaldo a Google Sheets por ahora para mantener la simplicidad.
+
+2. 💻 Pila Tecnológica (Stack)
+
+Componente
+
+Tecnología Requerida
+
+Propósito
+
+Estructura
+
+HTML5 / CSS3
+
+Marcado y Estilizado de la UI.
+
+Lógica
+
+JavaScript (ES Modules)
+
+Toda la lógica de negocio y aplicación.
+
+Persistencia
+
+IndexedDB
+
+Almacenamiento local de datos estructurados.
+
+Librería DB
+
+localForage
+
+Capa wrapper para simplificar el uso de IndexedDB (Asíncrono y soporta objetos).
+
+Criptografía
+
+bcryptjs (o similar)
+
+Obligatorio para generar hash de contraseñas antes del almacenamiento.
+
+3. 🏗️ Arquitectura y Estructura de Módulos (Simulación Clean Architecture)
+
+La arquitectura debe simular el patrón de Arquitectura Limpia utilizando la modularidad de JavaScript (ES Modules) para garantizar la Separación de Responsabilidades (SRP) y el Desacoplamiento.
+
+3.1. Estructura de Carpetas
+
+/spa-auth
+├── index.html
+├── /css
+│   └── main.css
+└── /js
+    ├── main.js             // Arranque de la aplicación (solo inicialización y routers)
+    ├── /domain             // 🛡️ Reglas de negocio puras
+    │   ├── User.js         // Clase/Entidad de Usuario
+    │   └── RoleValidation.js
+    ├── /use_cases          // 🧠 Lógica de aplicación, orquestación de flujos
+    │   ├── RegisterUser.js
+    │   └── AuthenticateUser.js
+    ├── /infrastructure     // 💾 Detalles técnicos, persistencia
+    │   ├── UserRepository.js // Implementación de `localForage`
+    │   └── AuthService.js    // Implementación de `bcryptjs`
+    └── /presentation       // 🖼️ Componentes de la UI (Manipulación del DOM)
+        ├── LoginView.js
+        └── Dashboard.js
+
+
+3.2. Reglas Clave de la Arquitectura
+
+Inversión de Dependencia (DIP): Los Casos de Uso (/use_cases) no deben importar directamente la implementación de Infraestructura (/infrastructure). Deben recibir el repositorio (la función de guardar/leer) como un argumento (Inyección de Dependencia).
+
+Unidireccionalidad: El flujo de datos debe ir desde Presentación → Casos de Uso → Infraestructura y regresar.
+
+Encapsulamiento: La lógica de negocio (por ejemplo, validación de un usuario) debe residir en la capa Domain.
+
+4. 📝 Metodología de Desarrollo y Control (Principio de Atomicidad)
+
+La programación debe seguir una metodología incremental y de validación estricta.
+
+4.1. División Atómica de Tareas
+
+El proyecto debe dividirse en subtareas lo más atómicas posible. Una tarea debe ser una unidad lógica pequeña que se pueda completar y probar de forma aislada.
+
+Ejemplo de Tarea Atómica: "Crear la función UserRepository.findUserByUsername(username)."
+
+Ejemplo de Tarea NO Atómica: "Implementar el flujo de Login." (Esto es un conjunto de subtareas).
+
+4.2. Validación Funcional
+
+Después de completar cada subtarea atómica (ej. una función o un módulo), se debe realizar una validación de su correcto funcionamiento antes de pasar a la siguiente.
+
+Validación de Infraestructura: Si se implementa localForage, se debe probar inmediatamente que puede guardar y recuperar un objeto simple correctamente.
+
+Validación de Lógica: Si se implementa RegisterUser.js, se debe probar si utiliza la función hash y llama al repositorio con los datos correctos.
+
+4.3. Control de Progreso (Checklist Visual)
+
+Para mantener el control y el seguimiento del progreso (qué funciona, qué se ha validado, y qué falta), la planificación y la ejecución deben generar un resultado que pueda visualizarse fácilmente.
+
+Cuando se inicie el proyecto (Modo Planificación), se debe crear un Plan de Desarrollo Detallado que sirva como una lista de verificación (Checklist) de todas las tareas atómicas a realizar.
+
+Tras la ejecución o validación exitosa de cada subtarea, el plan debe reflejar ese estado (ej., [COMPLETADO]).
+
+5. 🔑 Directiva de Implementación para el Agente/Copiloto
+
+AL GENERAR CÓDIGO:
+
+Modularidad: Cada archivo JS debe usar export para sus clases/funciones.
+
+Persistencia: La clave de localForage para almacenar la colección de usuarios debe ser AUTH_USERS.
+
+Roles: Los roles de usuario deben ser SuperAdmin, Admin, y Client.
+
+Autenticación: Implementar un sistema de sesión simple (ej., guardando el ID del usuario actual en un LocalStorage para indicar el estado de login, ya que IndexedDB no debe usarse para datos volátiles de sesión).
+
+#----------------------------------------------#

@@ -1,0 +1,30 @@
+el agente empezo a trabajar en todas las cosas 
+sin validar ni decir en que ppaso iva ni marcar que 
+tarea se habia completado, debo cambiar las directivas
+en indicarle que vaya paso a paso y que marque las tareas
+ademas que me informe antes de pasar a un siguente paso
+y que valide si la tarea se completo correctamente.
+
+deberia aprender a usar git no pedirle al sistema
+que lo haga por mi 
+el uso de comando tambien deberia hacerse manuale
+solo en el caso de debugin que tome el control
+
+deberia ver como se hace la aplicacion manualmente
+y despues podre enseñarle o saber como 
+se hace,
+
+tener en cuenta que se levanto en un servidor
+
+tiene errores inconsistentes por ejemplo
+no guarda la informacion al cerrar el navegador
+y al no cerrar la sesion y cerrar el navegador entra 
+en un estado inconsistente,
+
+se tiene que aceptar a cada rato cosas no Se
+si depende de que tengo que reiniciar el independiente
+
+es muy bueno para generar codigo parece los problemas que tuvo 
+fueron de orden de codigo al cargar los script pero los soluciono
+
+el implementation plan y el task deberian ser archivos visualizables
