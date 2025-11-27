@@ -55,7 +55,8 @@
 4. **Crear estructura de documentación**
    - Crear carpeta `.agent/tasks/` (si no existe)
    - Crear carpeta `.agent/tasks/evidence/` (si no existe)
-   - Generar archivo `TASKS.md` con todas las tareas
+   - Generar archivo `task.md` con todas las tareas teniendo en cuenta que este archivo se ira generando por cada solicitud de desarrollo o debuggin diferente dando lugar a task.md, task1.md, task2.md etc.
+   - Ademas se generara el archivo taskResolved con su respectiva numeracion ya sea 1,2,etc dependiendo el archivo task que estemos trabajando yase task1,task2,etc y en el se pondran los resultados de la tarea completada no se modificara reiteradamente el task.md correspondiente.
 
 #### **FASE 2: EJECUCIÓN SECUENCIAL**
 
@@ -96,15 +97,68 @@ Para **CADA tarea** en la lista:
    - Resolver problemas que surjan
    - Iterar hasta completar la tarea
 
-4. **Capturar evidencia**
+4. **Capturar evidencia FUNCIONAL**
 
-   - Screenshots de consola, DevTools, UI, etc.
-   - Videos de interacciones (usando browser_subagent)
-   - Imágenes generadas (usando generate_image)
-   - Logs de terminal o salidas de comandos
-   - Guardar evidencias en `.agent/tasks/evidence/`
+   **REGLAS CRÍTICAS PARA EVIDENCIAS:**
 
-5. **Actualizar TASKS.md**
+   ✅ **Una evidencia es VÁLIDA solo si:**
+
+   - Muestra CLARAMENTE lo que se está verificando
+   - Demuestra de forma VISUAL que la tarea se completó exitosamente
+   - Incluye contexto suficiente (ventana completa, consola visible, etc.)
+   - Se puede entender QUÉ se hizo solo mirando la imagen/video
+
+   ❌ **Una evidencia es INVÁLIDA si:**
+
+   - Solo muestra la página sin la información relevante
+   - No se ve la consola cuando se debe verificar algo en consola
+   - No se ve IndexedDB cuando se debe verificar datos almacenados
+   - No demuestra visualmente el éxito de la tarea
+
+   **ANTES de capturar evidencia, SIEMPRE:**
+
+   1. **Definir qué debe verse:** Escribir en taskResolved.md (teniendo en cuenta el archivo task que estemos trabajando si es task2 entonces usaremos taskResolved2) qué elementos específicos deben aparecer en la evidencia
+   2. **Preparar la vista:** Asegurar que DevTools/consola/IndexedDB estén visibles y expandidos
+   3. **Verificar visibilidad:** Confirmar que la información relevante está en pantalla
+   4. **Capturar:** Solo entonces tomar screenshot/video
+   5. **Validar:** Revisar que la evidencia capturada muestra lo esperado
+
+   **Tipos de evidencia según la tarea:**
+
+   - **Verificación de consola:**
+
+     - DevTools DEBE estar abierto y visible
+     - La pestaña Console DEBE estar activa
+     - Los logs relevantes DEBEN ser visibles en pantalla
+     - Ejemplo: "Debe verse `localforage: Object` en consola"
+
+   - **Verificación de IndexedDB:**
+
+     - DevTools > Application > IndexedDB DEBE estar abierto
+     - La base de datos DEBE estar expandida
+     - Los datos DEBEN ser visibles
+     - Ejemplo: "Debe verse AUTH_USERS con array de usuarios"
+
+   - **Verificación de localStorage:**
+
+     - DevTools > Application > Local Storage DEBE estar visible
+     - Las claves y valores DEBEN ser legibles
+     - Ejemplo: "Debe verse AUTH_SESSION con datos de usuario"
+
+   - **Verificación de UI:**
+
+     - El elemento UI relevante DEBE estar visible
+     - El estado DEBE ser claro (botón clickeado, modal abierto, etc.)
+     - Ejemplo: "Debe verse el botón 'Cerrar Sesión' resaltado"
+
+   - **Verificación de código:**
+     - El archivo DEBE estar abierto en el editor
+     - Las líneas modificadas DEBEN ser visibles
+     - Ejemplo: "Debe verse la función handleLogout() con el código nuevo"
+
+   **Guardar evidencias en `.agent/tasks/evidence/` con nombres descriptivos**
+
+5. **Actualizar taskResolved.md (correspondiente)**
 
    - Marcar la tarea como ✅ COMPLETADA o ❌ FALLIDA
    - Agregar **descripción BREVE** de cambios realizados:
@@ -161,7 +215,8 @@ Para **CADA tarea** en la lista:
 ```
 .agent/
 ├── tasks/
-│   ├── TASKS.md                    # Archivo principal de seguimiento
+│   ├── task1.md                    # Archivo
+|   |-- task2.md
 │   └── evidence/                   # Carpeta de evidencias
 │       ├── task-1-1-screenshot.png
 │       ├── task-1-2-video.webp
@@ -174,7 +229,7 @@ Para **CADA tarea** en la lista:
 
 ---
 
-## 📝 FORMATO DEL ARCHIVO TASKS.md
+## 📝 FORMATO DEL ARCHIVO task.md
 
 ```markdown
 # 📋 [TÍTULO DEL PROYECTO/SOLICITUD]
@@ -186,8 +241,6 @@ Para **CADA tarea** en la lista:
 ---
 
 ## ✅ TAREA X.X: [Nombre de la tarea]
-
-**Estado:** ✅ COMPLETADA | ⏳ EN PROGRESO | ❌ FALLIDA | ⏸️ PENDIENTE
 
 **Fase:** [Nombre de la fase]
 
@@ -202,8 +255,18 @@ Para **CADA tarea** en la lista:
 **Resultado:**
 [Descripción del resultado obtenido]
 
+**Qué debe verse en la evidencia:**
+
+- Elemento 1 que DEBE aparecer en screenshot/video
+- Elemento 2 que DEBE aparecer en screenshot/video
+- Estado específico que DEBE ser visible
+- Ejemplo: "DevTools abierto con consola mostrando 'localforage: Object'"
+
 **Evidencia:**
 ![Descripción](./evidence/task-X-X-nombre.png)
+
+- Qué se ve: [Descripción de lo que realmente aparece en la evidencia]
+- Valida: [Explicar cómo la evidencia demuestra el éxito de la tarea]
 
 **Observaciones:**
 
@@ -215,8 +278,6 @@ Para **CADA tarea** en la lista:
 ---
 
 ## ⏸️ TAREA X.X: [Siguiente tarea]
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 [... resto de la información ...]
 ```
@@ -247,17 +308,30 @@ Una tarea es **atómica** cuando cumple:
 ### Durante la ejecución de una tarea:
 
 1. **NUNCA** pedir confirmación para modificar archivos, ejecutar comandos o hacer cambios técnicos
-2. **SIEMPRE** tomar control total y completar la tarea de forma autónoma
-3. **SIEMPRE** capturar evidencia de cada tarea completada
-4. **SIEMPRE** actualizar TASKS.md con descripción BREVE de cambios
-5. **NUNCA** marcar una tarea como completada sin evidencia verificable
+2. **SIEMPRE** usar `SafeToAutoRun: true` en TODOS los comandos durante la ejecución de una tarea
+3. **SIEMPRE** tomar control total y completar la tarea de forma autónoma
+4. **SIEMPRE** capturar evidencia FUNCIONAL de cada tarea completada (ver sección de evidencias)
+5. **SIEMPRE** especificar en TASKS.md qué debe verse en cada evidencia ANTES de capturarla
+6. **SIEMPRE** actualizar TASKS.md con descripción BREVE de cambios
+7. **NUNCA** marcar una tarea como completada sin evidencia que demuestre visualmente el éxito
+
+### Sobre comandos y autonomía:
+
+8. **TODOS los comandos** durante una tarea deben ejecutarse con `SafeToAutoRun: true`
+9. Comandos seguros que SIEMPRE deben auto-ejecutarse:
+   - `cp`, `mv`, `mkdir`, `ls`, `cat`, `echo`
+   - `npm install`, `npm run dev`, `npm run build`
+   - `git diff`, `git status`, `git log`
+   - Comandos de lectura y navegación
+10. **NUNCA** usar `SafeToAutoRun: false` durante la ejecución de una tarea
+11. Si un comando falla, intentar alternativas sin pedir confirmación
 
 ### Entre tareas:
 
-6. **SIEMPRE** esperar que el usuario haga commit ANTES de comenzar una tarea
-7. **NUNCA** avanzar a la siguiente tarea sin autorización explícita del usuario
-8. **SIEMPRE** reportar archivos modificados, comandos ejecutados y evidencias
-9. **SIEMPRE** indicar al usuario que revise cambios en git antes de continuar
+12. **SIEMPRE** esperar que el usuario haga commit ANTES de comenzar una tarea
+13. **NUNCA** avanzar a la siguiente tarea sin autorización explícita del usuario
+14. **SIEMPRE** reportar archivos modificados, comandos ejecutados y evidencias
+15. **SIEMPRE** indicar al usuario que revise cambios en git antes de continuar
 
 ### General:
 
