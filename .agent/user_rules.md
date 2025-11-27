@@ -106,7 +106,7 @@ Para **CADA tarea** en la lista:
    - Muestra CLARAMENTE lo que se está verificando
    - Demuestra de forma VISUAL que la tarea se completó exitosamente
    - Incluye contexto suficiente (ventana completa, consola visible, etc.)
-   - Se puede entender QUÉ se hizo solo mirando la imagen/video
+   - Se puede entender QUÉ se hizo solo mirando la imagen
 
    ❌ **Una evidencia es INVÁLIDA si:**
 
@@ -118,9 +118,9 @@ Para **CADA tarea** en la lista:
    **ANTES de capturar evidencia, SIEMPRE:**
 
    1. **Definir qué debe verse:** Escribir en taskResolved.md (teniendo en cuenta el archivo task que estemos trabajando si es task2 entonces usaremos taskResolved2) qué elementos específicos deben aparecer en la evidencia
-   2. **Preparar la vista:** Asegurar que DevTools/consola/IndexedDB estén visibles y expandidos
+   2. **Preparar la vista:** Asegurar que la información relevante está en pantalla
    3. **Verificar visibilidad:** Confirmar que la información relevante está en pantalla
-   4. **Capturar:** Solo entonces tomar screenshot/video
+   4. **Capturar:** Solo entonces tomar screenshot
    5. **Validar:** Revisar que la evidencia capturada muestra lo esperado
 
    **Tipos de evidencia según la tarea:**
@@ -184,31 +184,13 @@ Para **CADA tarea** en la lista:
 
      - ✅ Cambios en git (git diff)
      - ✅ Evidencia en `.agent/tasks/evidence/`
-     - ✅ Archivo TASKS.md actualizado
+     - ✅ Archivo taskResolved.md actualizado
 
    - El usuario decidirá:
      - ✅ **Aprobar:** Hace commit + "Continúa con Tarea X.X"
      - ❌ **Rechazar:** Hace rollback + "No me gustó [razón]. Hazlo de nuevo [instrucciones]"
 
 8. **Repetir** para la siguiente tarea
-
-#### **FASE 3: VERIFICACIÓN FINAL**
-
-1. **Revisar todas las tareas completadas**
-
-   - Verificar que todas están marcadas como ✅
-   - Confirmar que todas tienen evidencia
-
-2. **Prueba integral**
-
-   - Probar el sistema completo end-to-end
-   - Verificar que se cumplió el objetivo original
-
-3. **Documentar resultado final**
-   - Actualizar TASKS.md con resumen final
-   - Listar todos los cambios realizados
-
----
 
 ## 📁 ESTRUCTURA DE ARCHIVOS OBLIGATORIA
 
@@ -219,8 +201,7 @@ Para **CADA tarea** en la lista:
 |   |-- task2.md
 │   └── evidence/                   # Carpeta de evidencias
 │       ├── task-1-1-screenshot.png
-│       ├── task-1-2-video.webp
-│       ├── task-2-1-console.png
+│       ├── task1-1-1-console.png
 │       └── ...
 ├── workflows/
 ├── architecture.md
@@ -257,8 +238,8 @@ Para **CADA tarea** en la lista:
 
 **Qué debe verse en la evidencia:**
 
-- Elemento 1 que DEBE aparecer en screenshot/video
-- Elemento 2 que DEBE aparecer en screenshot/video
+- Elemento 1 que DEBE aparecer en screenshot
+- Elemento 2 que DEBE aparecer en screenshot
 - Estado específico que DEBE ser visible
 - Ejemplo: "DevTools abierto con consola mostrando 'localforage: Object'"
 
@@ -311,8 +292,8 @@ Una tarea es **atómica** cuando cumple:
 2. **SIEMPRE** usar `SafeToAutoRun: true` en TODOS los comandos durante la ejecución de una tarea
 3. **SIEMPRE** tomar control total y completar la tarea de forma autónoma
 4. **SIEMPRE** capturar evidencia FUNCIONAL de cada tarea completada (ver sección de evidencias)
-5. **SIEMPRE** especificar en TASKS.md qué debe verse en cada evidencia ANTES de capturarla
-6. **SIEMPRE** actualizar TASKS.md con descripción BREVE de cambios
+5. **SIEMPRE** especificar en el task.md correspondiente qué debe verse en cada evidencia ANTES de capturarla
+6. **SIEMPRE** actualizar taskResolved.md correspondiente con descripción BREVE de cambios
 7. **NUNCA** marcar una tarea como completada sin evidencia que demuestre visualmente el éxito
 
 ### Sobre comandos y autonomía:
