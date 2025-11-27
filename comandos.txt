@@ -21,3 +21,10 @@ git commit -m "Primer commit"
 git remote add origin <URL>
 
 git push -u origin master
+
+
+levantar servidor 
+npx -y http-server -p 8080 -c-1
+
+ve todos los archivos y sub archivos 
+ls -R
