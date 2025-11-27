@@ -361,3 +361,21 @@ Este flujo NO se aplica a:
 - ❌ Explicaciones de conceptos
 - ❌ Revisión de código sin cambios
 - ❌ Consultas rápidas
+
+## 🤝 Modo Cooperativo
+
+**Definición:** Cuando una tarea requiere interacción con el navegador (login, registro, clicks, etc.), el agente solicitará al usuario que realice esas acciones y luego continuará con el resto de la tarea.
+
+**Uso:**
+
+- El usuario indica: `resolver la tarea X.X usando el modo cooperativo`.
+- El agente describirá paso a paso lo que necesita que el usuario haga en el navegador (por ejemplo, abrir la URL, rellenar el formulario, pulsar botones).
+- Tras la confirmación de que el usuario ha completado los pasos, el agente retomará el control, verificará la evidencia y continuará con los siguientes pasos (modificaciones de código, generación de logs, etc.).
+
+**Flujo:**
+
+1. **Agente genera lista de acciones** que el usuario debe ejecutar en el navegador.
+2. **Usuario ejecuta las acciones** y responde `hecho` o indica que necesita ayuda.
+3. **Agente verifica** (p.ej., solicita captura de pantalla, verifica consola) y prosigue con la tarea.
+
+Esta directiva **no altera** las reglas existentes; simplemente añade un modo de trabajo colaborativo para acciones que el agente no puede ejecutar directamente.
