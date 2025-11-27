@@ -1,2 +1,23 @@
 git config --global user.name "kael1331"
 git config --global user.email "kearcangel@gmail.com"
+git status
+
+git add .
+git commit -m "Primer commit: proyecto inicial"
+
+git remote add origin https://github.com/usuario/nombre-repo.git
+git remote -v
+git branch
+
+
+Checklist rápido para inicializar y subir un proyecto
+
+git init
+
+git add .
+
+git commit -m "Primer commit"
+
+git remote add origin <URL>
+
+git push -u origin main
