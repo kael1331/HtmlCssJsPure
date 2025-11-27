@@ -27,54 +27,33 @@
 
 # FASE 1: DIAGNÓSTICO - Verificar el estado actual
 
-## ✅ TAREA 1.1: Verificar que localforage está cargado correctamente
-
-**Estado:** ✅ COMPLETADA
+## ⏸️ TAREA 1.1: Verificar que localforage está cargado correctamente
 
 **Fase:** Diagnóstico
 
 **Descripción:** Abrir la aplicación en el navegador y verificar en consola que `window.localforage` existe y está disponible.
 
-**Acciones realizadas:**
+**Acciones a realizar:**
 
-- [x] Servidor de desarrollo corriendo en http://127.0.0.1:8080
-- [x] Abrí el navegador en la URL del servidor
-- [x] Inyecté un overlay visual en la página para mostrar el estado de las variables globales
-- [x] Verifiqué visualmente:
+- [ ] Servidor de desarrollo corriendo en http://127.0.0.1:8080
+- [ ] Abrir el navegador en la URL del servidor
+- [ ] Inyectar un overlay visual en la página para mostrar el estado de las variables globales
+- [ ] Verificar visualmente:
   - `window.localforage` es `object`
   - Driver actual es `asyncStorage` (IndexedDB)
   - `window.bcrypt` es `object`
-- [x] Capturé screenshot con el overlay visible
+- [ ] Capturar screenshot con el overlay visible
 
-**Resultado:**
-✅ **localforage está cargado y configurado correctamente**
-
-- El driver `asyncStorage` confirma que está usando IndexedDB.
-- Las librerías están disponibles globalmente.
-
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Un recuadro negro con texto verde sobre la página de login
 - Texto: "VERIFICACIÓN LOCALFORAGE"
 - Texto: "localforage: object"
 - Texto: "driver: asyncStorage"
 
-**Evidencia:**
-
-- Screenshot: `./evidence/task-1-1-verification.png`
-- Video: `./evidence/task-1-1-video.webp`
-
-**Observaciones:**
-
-- Se usó inyección de DOM para garantizar visibilidad de los datos en el screenshot, ya que capturar la consola de DevTools a veces es inconsistente.
-
-**Completada el:** 2025-11-27 14:00:00
-
 ---
 
 ## ⏸️ TAREA 1.2: Verificar qué datos se almacenan actualmente en IndexedDB
-
-**Estado:** ✅ COMPLETADA
 
 **Fase:** Diagnóstico
 
@@ -82,33 +61,21 @@
 
 **Acciones a realizar:**
 
-- [x] Abrir DevTools > Application > Storage > IndexedDB (Simulado con JS)
-- [x] Expandir la base de datos de localforage
-- [x] Verificar qué claves existen (buscar 'AUTH_USERS')
-- [x] Ver qué usuarios están almacenados
-- [x] Capturar screenshot de IndexedDB
+- [ ] Abrir DevTools > Application > Storage > IndexedDB
+- [ ] Expandir la base de datos de localforage
+- [ ] Verificar qué claves existen (buscar 'AUTH_USERS')
+- [ ] Ver qué usuarios están almacenados
+- [ ] Capturar screenshot de IndexedDB
 
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
-- Panel de Application > IndexedDB visible (Simulado con overlay)
+- Panel de Application > IndexedDB visible
 - Base de datos expandida
 - Clave AUTH_USERS visible con sus valores
-
-**Evidencia:**
-
-- Screenshot: `./evidence/task-1-2-indexeddb.png`
-
-**Observaciones:**
-
-- Se utilizó un script para leer directamente de `localforage` y mostrar los datos en un overlay, confirmando que la clave `AUTH_USERS` existe y contiene al usuario SuperAdmin.
-
-**Completada el:** 2025-11-27 14:55:00
 
 ---
 
 ## ⏸️ TAREA 1.3: Crear un usuario de prueba y verificar si se guarda
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Diagnóstico
 
@@ -121,22 +88,14 @@
 - [ ] Inmediatamente verificar en DevTools > IndexedDB si el usuario aparece
 - [ ] Capturar screenshot del usuario en IndexedDB
 
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Panel de IndexedDB mostrando el nuevo usuario en el array
 - Formulario de creación o mensaje de éxito visible
 
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
-
 ---
 
 ## ⏸️ TAREA 1.4: Cerrar y reabrir navegador para verificar persistencia
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Diagnóstico
 
@@ -152,21 +111,13 @@
 - [ ] Verificar si AUTH_USERS todavía existe y contiene los usuarios
 - [ ] Capturar screenshot
 
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Panel de IndexedDB mostrando los datos persistidos después del reinicio
-
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
 
 ---
 
 ## ⏸️ TAREA 1.5: Verificar el comportamiento del botón logout
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Diagnóstico
 
@@ -181,24 +132,16 @@
 - [ ] Verificar en localStorage si AUTH_SESSION fue eliminado
 - [ ] Grabar video de la interacción
 
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Video mostrando el clic en el botón y la (falta de) reacción de la página
 - Panel de localStorage mostrando si la sesión se borró o no
-
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
 
 ---
 
 # FASE 2: CORRECCIÓN - Arreglar el problema de logout
 
 ## ⏸️ TAREA 2.1: Modificar la función handleLogout en ClientDashboard.js
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Corrección
 
@@ -212,38 +155,14 @@
 - [ ] Importar `renderLoginView` si no está importado
 - [ ] Guardar el archivo
 
-**Código a modificar:**
-
-```javascript
-// ANTES
-function handleLogout() {
-  logoutUser();
-}
-
-// DESPUÉS
-function handleLogout() {
-  logoutUser();
-  window.location.hash = "#login";
-  renderLoginView();
-}
-```
-
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Código modificado en el editor
-- Prueba funcional (video) mostrando que ahora sí redirige
-
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
+- Prueba funcional screenshot mostrando que ahora sí redirige
 
 ---
 
 ## ⏸️ TAREA 2.2: Modificar la función handleLogout en AdminDashboard.js
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Corrección
 
@@ -257,38 +176,14 @@ function handleLogout() {
 - [ ] Importar `renderLoginView` si no está importado
 - [ ] Guardar el archivo
 
-**Código a modificar:**
-
-```javascript
-// ANTES
-function handleLogout() {
-  logoutUser();
-}
-
-// DESPUÉS
-function handleLogout() {
-  logoutUser();
-  window.location.hash = "#login";
-  renderLoginView();
-}
-```
-
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Código modificado en el editor
-- Prueba funcional (video) mostrando que ahora sí redirige
-
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
+- Prueba funcional screenshot mostrando que ahora sí redirige
 
 ---
 
 ## ⏸️ TAREA 2.3: Modificar la función handleLogout en SuperAdminDashboard.js
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Corrección
 
@@ -302,38 +197,14 @@ function handleLogout() {
 - [ ] Importar `renderLoginView` si no está importado
 - [ ] Guardar el archivo
 
-**Código a modificar:**
-
-```javascript
-// ANTES
-function handleLogout() {
-  logoutUser();
-}
-
-// DESPUÉS
-function handleLogout() {
-  logoutUser();
-  window.location.hash = "#login";
-  renderLoginView();
-}
-```
-
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Código modificado en el editor
 - Prueba funcional (video) mostrando que ahora sí redirige
 
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
-
 ---
 
 ## ⏸️ TAREA 2.4: Probar logout en los 3 roles diferentes
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Corrección
 
@@ -347,23 +218,15 @@ function handleLogout() {
 - [ ] Verificar que en todos los casos redirige al login
 - [ ] Grabar video de las 3 pruebas
 
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Video continuo mostrando login -> logout -> login -> logout para los 3 roles
-
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
 
 ---
 
 # FASE 3: VERIFICACIÓN - Confirmar persistencia de datos
 
 ## ⏸️ TAREA 3.1: Verificar que el problema de persistencia existe
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Verificación
 
@@ -380,22 +243,14 @@ function handleLogout() {
 - [ ] Contar cuántos usuarios persisten
 - [ ] Capturar screenshots antes y después
 
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - IndexedDB ANTES de cerrar (con usuarios)
 - IndexedDB DESPUÉS de reabrir (¿vacío o con usuarios?)
 
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
-
 ---
 
 ## ⏸️ TAREA 3.2: Agregar logs de depuración en saveUser
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Verificación
 
@@ -409,29 +264,13 @@ function handleLogout() {
 - [ ] Agregar console.log después de `localforage.setItem`
 - [ ] Los logs deben mostrar el array completo de usuarios
 
-**Código a agregar:**
-
-```javascript
-console.log("💾 Guardando usuarios en IndexedDB:", users);
-await localforage.setItem(STORAGE_KEY, users);
-console.log("✅ Usuarios guardados exitosamente");
-```
-
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Consola mostrando los logs al guardar un usuario
-
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
 
 ---
 
 ## ⏸️ TAREA 3.3: Verificar que localforage.setItem se ejecuta correctamente
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Verificación
 
@@ -446,21 +285,13 @@ console.log("✅ Usuarios guardados exitosamente");
 - [ ] Verificar que el array mostrado contiene todos los usuarios
 - [ ] Capturar screenshot de la consola
 
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Consola con los logs de éxito y el array de usuarios
-
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
 
 ---
 
 ## ⏸️ TAREA 3.4: Verificar configuración de localforage
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Verificación
 
@@ -473,23 +304,15 @@ console.log("✅ Usuarios guardados exitosamente");
 - [ ] Verificar nombre de la base de datos, driver usado, etc.
 - [ ] Capturar screenshot de la configuración
 
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Consola mostrando el objeto de configuración de localforage
-
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
 
 ---
 
 # FASE 4: SOLUCIÓN FINAL - Si el problema persiste
 
 ## ⏸️ TAREA 4.1: Implementar inicialización explícita de localforage
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Solución Final
 
@@ -502,35 +325,14 @@ console.log("✅ Usuarios guardados exitosamente");
 - [ ] Importar la configuración en main.js
 - [ ] Probar que funciona
 
-**Código a crear:**
-
-```javascript
-// Configuración explícita de localforage
-localforage.config({
-  driver: localforage.INDEXEDDB,
-  name: "SPA_AUTH_DB",
-  version: 1.0,
-  storeName: "auth_storage",
-  description: "Base de datos de autenticación SPA",
-});
-```
-
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Código nuevo creado
 - Consola mostrando que se usa la nueva configuración
 
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
-
 ---
 
 ## ⏸️ TAREA 4.2: Prueba integral de persistencia
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Solución Final
 
@@ -548,21 +350,13 @@ localforage.config({
 - [ ] Verificar IndexedDB
 - [ ] Capturar screenshots antes y después
 
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - IndexedDB con 6 usuarios persistidos después del reinicio
-
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
 
 ---
 
 ## ⏸️ TAREA 4.3: Prueba de logout después de reapertura
-
-**Estado:** ⏸️ PENDIENTE - ESPERANDO AUTORIZACIÓN
 
 **Fase:** Solución Final
 
@@ -578,32 +372,6 @@ localforage.config({
 - [ ] Verificar que redirige al login
 - [ ] Grabar video de todo el proceso
 
-**Qué debe verse en la evidencia:**
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
 
 - Video mostrando persistencia de sesión y logout exitoso
-
-**Evidencia:** (Se subirá al completar)
-
-**Observaciones:** (Se agregarán al completar)
-
-**Completada el:** (Pendiente)
-
----
-
-# 📊 RESUMEN DE PROGRESO
-
-**Total de tareas:** 16
-**Completadas:** 2 ✅
-**En progreso:** 0
-**Pendientes:** 14
-**Fallidas:** 0
-
-**Última actualización:** 2025-11-27 14:55
-
----
-
-# 🎯 PRÓXIMA TAREA
-
-**TAREA 1.3:** Crear un usuario de prueba y verificar si se guarda
-**Estado:** Esperando autorización del usuario
-**Requiere:** Crear usuario y verificar IndexedDB inmediatamente

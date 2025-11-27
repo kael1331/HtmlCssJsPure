@@ -55,8 +55,8 @@
 4. **Crear estructura de documentación**
    - Crear carpeta `.agent/tasks/` (si no existe)
    - Crear carpeta `.agent/tasks/evidence/` (si no existe)
-   - Generar archivo `task.md` con todas las tareas teniendo en cuenta que este archivo se ira generando por cada solicitud de desarrollo o debuggin diferente dando lugar a task.md, task1.md, task2.md etc.
-   - Ademas se generara el archivo taskResolved con su respectiva numeracion ya sea 1,2,etc dependiendo el archivo task que estemos trabajando yase task1,task2,etc y en el se pondran los resultados de la tarea completada no se modificara reiteradamente el task.md correspondiente.
+   - Generar archivo `taskN.md` (donde N es el número consecutivo: task1.md, task2.md, etc.) con el PLAN de tareas. Este archivo es de **SOLO LECTURA** una vez creado.
+   - Generar archivo `taskResolvedN.md` correspondiente (taskResolved1.md, etc.) donde se registrarán los RESULTADOS.
 
 #### **FASE 2: EJECUCIÓN SECUENCIAL**
 
@@ -210,7 +210,7 @@ Para **CADA tarea** en la lista:
 
 ---
 
-## 📝 FORMATO DEL ARCHIVO task.md
+## 📝 FORMATO DEL ARCHIVO taskN.md (PLANIFICACIÓN - SOLO LECTURA)
 
 ```markdown
 # 📋 [TÍTULO DEL PROYECTO/SOLICITUD]
@@ -221,11 +221,48 @@ Para **CADA tarea** en la lista:
 
 ---
 
-## ✅ TAREA X.X: [Nombre de la tarea]
+## ⏸️ TAREA X.X: [Nombre de la tarea]
 
 **Fase:** [Nombre de la fase]
 
 **Descripción:** [Qué se debe hacer]
+
+**Acciones a realizar:**
+
+- [ ] Acción 1
+- [ ] Acción 2
+- [ ] Acción 3
+
+**Criterios de Aceptación (Qué debe verse en la evidencia):**
+
+- Elemento 1 que DEBE aparecer en screenshot
+- Elemento 2 que DEBE aparecer en screenshot
+- Estado específico que DEBE ser visible
+- Ejemplo: "DevTools abierto con consola mostrando 'localforage: Object'"
+
+---
+
+## ⏸️ TAREA X.X: [Siguiente tarea]
+
+[... resto de la información ...]
+```
+
+## 📝 FORMATO DEL ARCHIVO taskResolvedN.md (RESULTADOS - ESCRITURA)
+
+```markdown
+# ✅ RESULTADOS: [TÍTULO DEL PROYECTO]
+
+**Fecha de inicio:** YYYY-MM-DD
+**Estado General:** EN PROGRESO
+
+---
+
+## ✅ TAREA X.X: [Nombre de la tarea]
+
+**Estado:** ✅ COMPLETADA
+**Fecha:** YYYY-MM-DD HH:MM
+
+**Descripción:** [Breve recordatorio de lo que se hizo]
 
 **Acciones realizadas:**
 
@@ -234,33 +271,20 @@ Para **CADA tarea** en la lista:
 - [x] Acción 3
 
 **Resultado:**
-[Descripción del resultado obtenido]
-
-**Qué debe verse en la evidencia:**
-
-- Elemento 1 que DEBE aparecer en screenshot
-- Elemento 2 que DEBE aparecer en screenshot
-- Estado específico que DEBE ser visible
-- Ejemplo: "DevTools abierto con consola mostrando 'localforage: Object'"
+[Descripción detallada del resultado obtenido y cómo resuelve el problema]
 
 **Evidencia:**
 ![Descripción](./evidence/task-X-X-nombre.png)
 
-- Qué se ve: [Descripción de lo que realmente aparece en la evidencia]
-- Valida: [Explicar cómo la evidencia demuestra el éxito de la tarea]
+- **Qué se ve:** [Descripción de lo que realmente aparece en la evidencia]
+- **Validación:** [Explicar cómo la evidencia demuestra el éxito de la tarea basándose en los criterios del plan]
 
 **Observaciones:**
 
-- Observación 1
-- Observación 2
-
-**Completada el:** YYYY-MM-DD HH:MM:SS
+- Observación relevante 1
+- Observación relevante 2
 
 ---
-
-## ⏸️ TAREA X.X: [Siguiente tarea]
-
-[... resto de la información ...]
 ```
 
 ---
@@ -292,7 +316,7 @@ Una tarea es **atómica** cuando cumple:
 2. **SIEMPRE** usar `SafeToAutoRun: true` en TODOS los comandos durante la ejecución de una tarea
 3. **SIEMPRE** tomar control total y completar la tarea de forma autónoma
 4. **SIEMPRE** capturar evidencia FUNCIONAL de cada tarea completada (ver sección de evidencias)
-5. **SIEMPRE** especificar en el task.md correspondiente qué debe verse en cada evidencia ANTES de capturarla
+5. **SIEMPRE** verificar que la evidencia cumpla con los criterios definidos en `taskN.md` antes de capturarla
 6. **SIEMPRE** actualizar taskResolved.md correspondiente con descripción BREVE de cambios
 7. **NUNCA** marcar una tarea como completada sin evidencia que demuestre visualmente el éxito
 

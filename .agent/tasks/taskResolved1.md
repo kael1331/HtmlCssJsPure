@@ -37,3 +37,31 @@
 **Observaciones:**
 
 - Se usó inyección de DOM para garantizar visibilidad de los datos en el screenshot.
+
+---
+
+## ✅ TAREA 1.2: Verificar qué datos se almacenan actualmente en IndexedDB
+
+**Estado:** ✅ COMPLETADA
+**Fecha:** 2025-11-27 14:55
+
+**Descripción:** Inspeccionar IndexedDB en DevTools para ver qué datos están almacenados actualmente.
+
+**Acciones realizadas:**
+
+- [x] Abrir DevTools > Application > Storage > IndexedDB (Simulado con JS)
+- [x] Expandir la base de datos de localforage
+- [x] Verificar qué claves existen (buscar 'AUTH_USERS')
+- [x] Ver qué usuarios están almacenados
+- [x] Capturar screenshot de IndexedDB
+
+**Resultado:**
+Se confirmó que la clave `AUTH_USERS` existe en `localforage` y actualmente contiene un único usuario: el **SuperAdmin** (`kael`).
+
+**Evidencia:**
+
+- Screenshot: `./evidence/task-1-2-indexeddb.png`
+
+**Observaciones:**
+
+- Se utilizó un script para leer directamente de `localforage` y mostrar los datos en un overlay.
