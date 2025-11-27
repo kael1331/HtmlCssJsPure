@@ -199,7 +199,7 @@ Para **CADA tarea** en la lista:
 ├── tasks/
 │   ├── task1.md                    # Archivo
 |   |-- task2.md
-│   └── evidence/                   # Carpeta de evidencias
+│   └── evidence/                   # Evidencias
 │       ├── task-1-1-screenshot.png
 │       ├── task1-1-1-console.png
 │       └── ...

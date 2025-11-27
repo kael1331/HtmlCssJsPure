@@ -34,7 +34,7 @@ La arquitectura debe simular el patrón de **Arquitectura Limpia** utilizando la
 ### 3.1. Estructura de Carpetas
 
 ```
-/spa-auth
+/html-css-js
 ├── index.html
 ├── /css
 │   └── main.css

@@ -13,7 +13,7 @@ Este workflow define los pasos para iniciar correctamente el proyecto SPA siguie
 Crear la estructura de carpetas según la arquitectura definida:
 
 ```
-/spa-auth
+/html-css-js
 ├── index.html
 ├── /css
 │   └── main.css
@@ -87,7 +87,7 @@ Este workflow define los pasos para iniciar correctamente el proyecto SPA siguie
 Crear la estructura de carpetas según la arquitectura definida:
 
 ```
-/spa-auth
+/html-css-js
 ├── index.html
 ├── /css
 │   └── main.css
