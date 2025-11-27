@@ -28,3 +28,10 @@ es muy bueno para generar codigo parece los problemas que tuvo
 fueron de orden de codigo al cargar los script pero los soluciono
 
 el implementation plan y el task deberian ser archivos visualizables
+
+
+modo cooperativo
+modo autonomo normal osea realiza una lista de tareas y las ejecuta una por 1
+modo autonomo turbo realiza todas las tareas de una vez pero las subdivide en tareas
+modo analisis 
+modo autonomo turbo express realiza todas las tareas y no las subdivides
