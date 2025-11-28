@@ -111,7 +111,13 @@ export async function renderSuperAdminDashboard(user) {
             
             <!-- Lista de Todos los Usuarios -->
             <div style="background: #fff; padding: 20px; border-radius: 8px;">
-                <h2 style="margin-bottom: 20px; color: #333;">👥 Todos los Usuarios</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h2 style="margin: 0; color: #333;">👥 Todos los Usuarios</h2>
+                    <label style="cursor: pointer; display: flex; align-items: center; font-weight: 500; color: #555;">
+                        <input type="checkbox" id="toggle-clients" style="margin-right: 8px; transform: scale(1.2);">
+                        Mostrar Clientes
+                    </label>
+                </div>
                 ${allUsers.length === 0 ? 
                     '<p style="color: #999; text-align: center;">No hay usuarios registrados</p>' :
                     `<table class="users-table">
@@ -125,7 +131,7 @@ export async function renderSuperAdminDashboard(user) {
                         </thead>
                         <tbody>
                             ${allUsers.map(u => `
-                                <tr>
+                                <tr class="${u.role === ROLES.CLIENT ? 'row-client' : ''}" style="${u.role === ROLES.CLIENT ? 'display: none;' : ''}">
                                     <td><strong>${u.username}</strong></td>
                                     <td>
                                         <span class="role-badge role-${u.role.toLowerCase().replace('admin', 'admin')}">${u.role}</span>
@@ -153,6 +159,17 @@ export async function renderSuperAdminDashboard(user) {
     // Event listeners
     document.getElementById('btn-logout').addEventListener('click', handleLogout);
     document.getElementById('btn-create-user').addEventListener('click', showCreateForm);
+    
+    // Event listener para el filtro de clientes
+    const toggleClients = document.getElementById('toggle-clients');
+    if (toggleClients) {
+        toggleClients.addEventListener('change', (e) => {
+            const clientRows = document.querySelectorAll('.row-client');
+            clientRows.forEach(row => {
+                row.style.display = e.target.checked ? 'table-row' : 'none';
+            });
+        });
+    }
     
     const cancelBtn = document.getElementById('btn-cancel-create');
     if (cancelBtn) {
